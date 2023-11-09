@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class ProfesseurComponent {
 
+
+  openDrawer: boolean = false;
+  //  closeDrawer: boolean = false;
+  
+   onButtoonDrawerClicked(){
+      this.openDrawer = !this.openDrawer
+   }
 }

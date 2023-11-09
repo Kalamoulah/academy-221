@@ -20,6 +20,7 @@ import { EtudiantComponent } from './pages/etudiant/etudiant.component';
 import { SemestreComponent } from './pages/semestre/semestre.component';
 import { CardSalleComponent } from './components/card-salle/card-salle.component';
 import { CardClasseComponent } from './components/card-classe/card-classe.component';
+import { InscriptionComponent } from './pages/inscription/inscription.component';
 
 
 
@@ -42,7 +43,8 @@ import { CardClasseComponent } from './components/card-classe/card-classe.compon
     EtudiantComponent,
     SemestreComponent,
     CardSalleComponent,
-    CardClasseComponent
+    CardClasseComponent,
+    InscriptionComponent
   ],
   imports: [
     SharedModule,

@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./annee.component.css']
 })
 export class AnneeComponent {
+  
+ openDrawer: boolean = false;
+//  closeDrawer: boolean = false;
 
+ onButtoonDrawerClicked(){
+    this.openDrawer = !this.openDrawer
+ }
+ 
 }

@@ -1,1 +1,126 @@
-<p>etudiant works!</p>
+<div class="w-full h-full p-4">
+  <div class="w-full h-[10%] flex justify-between items-center">
+    <h1 class="uppercase text-4xl font-semibold">Etudiant</h1>
+  
+    <a [routerLink]="'²'"  class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "> inscrire etudiant(e)</a>
+  </div>
+
+  <div class="w-full h-auto mt-10 flex flex-col justify-center items-start">
+    <div class="mb-5">
+      <label
+        for="countries"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >filter par classe 
+      </label
+      >
+      <select
+        id="countries"
+        class="bg-gray-50 border border-Azure text-gray-900 text-sm rounded-lg focus:ring-azure-light focus:border-azure-light block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"      >
+        <option selected>Choose a country</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="FR">France</option>
+        <option value="DE">Germany</option>
+      </select>
+    </div>
+    <table class="w-[90%] text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead
+        class="text-xs text-white uppercase bg-azure-light dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Nom complet</th>
+          <th scope="col" class="px-6 py-3">mail</th>
+          <th scope="col" class="px-6 py-3">date de naissance</th>
+          <th scope="col" class="px-6 py-3">lieu de naissance</th>
+          <th scope="col" class="px-6 py-3">telephone</th>
+          <th scope="col" class="px-6 py-3">classe</th>
+          <th scope="col" class="px-6 py-3">options</th>
+        </tr>
+      </thead>
+      <tbody class="border border-gris">
+        <tr
+          class="bg-white border-b border-gris dark:bg-gray-900 dark:border-gray-700"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Apple MacBook Pro 17"
+          </th>
+          <td class="px-6 py-4">Silver</td>
+          <td class="px-6 py-4">Laptop</td>
+          <td class="px-6 py-4">$2999</td>
+          <td class="px-6 py-4">778987998</td>
+          <td class="px-6 py-4">terminal</td>
+          <td class="px-6 py-4">
+            <a
+              href="#"
+              class="font-medium text-azure-light dark:text-blue-500 hover:underline"
+              >Edit</a
+            >
+            <a
+              href="#"
+              class="font-medium text-azure-light dark:text-blue-500 hover:underline ml-3"
+              >details</a
+            >
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gris bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Microsoft Surface Pro
+          </th>
+          <td class="px-6 py-4">White</td>
+          <td class="px-6 py-4">Laptop PC</td>
+          <td class="px-6 py-4">$1999</td>
+          <td class="px-6 py-4">778987998</td>
+          <td class="px-6 py-4">terlinal</td>
+          <td class="px-6 py-4">
+            <a
+              href="#"
+              class="font-medium text-azure-light dark:text-blue-500 hover:underline"
+              >Edit</a
+            >
+            <a
+              href="#"
+              class="font-medium text-azure-light dark:text-blue-500 hover:underline ml-3"
+              >details</a
+            >
+          </td>
+        </tr>
+        <tr
+          class="bg-white border-b border-gris dark:bg-gray-900 dark:border-gray-700"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Magic Mouse 2
+          </th>
+          <td class="px-6 py-4">Black</td>
+          <td class="px-6 py-4">Accessories</td>
+          <td class="px-6 py-4">$99</td>
+          <td class="px-6 py-4">778987998</td>
+          <td class="px-6 py-4">terminal</td>
+          <td class="px-6 py-4">
+            <a
+              href="#"
+              class="font-medium text-azure-light dark:text-blue-500 hover:underline"
+              >Edit</a
+            >
+            <a
+              href="#"
+              class="font-medium text-azure-light dark:text-blue-500 hover:underline ml-3"
+              >details</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./salle.component.css']
 })
 export class SalleComponent {
+   openModal :boolean = false;
 
+   onclicled(){
+    this.openModal = !this.openModal
+   }
 }

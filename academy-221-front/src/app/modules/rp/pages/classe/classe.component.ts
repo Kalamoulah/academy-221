@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./classe.component.css']
 })
 export class ClasseComponent {
-
+  openDrawer: boolean = false;
+  
+  
+   onButtoonDrawerClicked(){
+      this.openDrawer = !this.openDrawer
+   }
 }

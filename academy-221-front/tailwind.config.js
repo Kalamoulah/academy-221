@@ -2,9 +2,10 @@
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
-    extend: {},
+  
     colors:{
       "white": "#ffffff",
       "black": "#000000",
@@ -13,7 +14,14 @@ module.exports = {
       "Azure": "#1e54dd",
       "azure-light":"#6491db"
     },
+    extend: {
+      backgroundColor: {
+        'modal-dark': 'rgba(0, 0, 0, 0.5)', 
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
 

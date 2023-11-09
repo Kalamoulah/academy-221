@@ -1,0 +1,78 @@
+<div class="h-screen ">
+    <div class="h-[10%]  flex justify-start items-center">
+        <a [routerLink]="'/rp/etudiants'" class="ml-5 flex items-center bg-azure-light p-2 text-white rounded-full dark:text-white hover:bg-Azure hover:text-white dark:hover:bg-gray-700 group hover:-translate-x-2 transition-transform ">
+            <svg class="w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z" fill="currentColor"></path>
+          </svg>
+          </a>
+        <h1 class="text-4xl uppercase font-mono ml-5">Inscription</h1>
+    </div>
+    <div class="h-[90%] pt-5">
+        <div class="flex  justify-center items-center ">
+            <form  class="flex w-[50%] ">
+                <div class="w-[48%] mr-10">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload
+                        file</label>
+                    <input (change)="onFileSelected($event)" 
+                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                </div>
+                <div class="w-[48%]">
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                        your
+                        country</label>
+                    <select id="countries"
+                       (change)="classeSelected($event)"
+                      name="classe"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option [value]="0" >choisir une classe</option>
+                        <option *ngFor="let classe of classes " [value]="classe.id">{{classe.classe}}</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="w-full h-[90%] mt-3 flex justify-center items-center">
+            <div class="w-[80%] h-full p-5">
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table *ngIf="excelData" class="w-f ull text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Nom complet
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    mail
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    date_naissance
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    lieu naissance
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    telephone
+                                </th>
+                               
+                                <th scope="col" class="px-6 py-3">
+                                    role
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of excelData">
+                                <td class="px-6 py-4 text-black">{{ row['name'] }}</td>
+                                <td class="px-6 py-4 text-black ">{{ row['email'] }}</td>
+                                <td class="px-6 py-4 text-black">{{ row['date_naissance'] | date: 'dd/MM/yyyy' }}</td>
+                                <td class="px-6 py-4 text-black">{{ row['lieu_de_naissance'] }}</td>
+                                <td class="px-6 py-4 text-black">{{ row['telephone'] }}</td>
+                                <td class="px-6 py-4 text-black">{{ row['role'] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <button [disabled]="classeSelect == 0" *ngIf="excelData" (click)="insciption()" class="p-3 bg-Azure text-white mt-10 rounded-lg flex absolute right-[10%]">Ajouter</button>
+            </div>
+        </div>
+    </div>
+    <div>
