@@ -21,6 +21,10 @@ import { SemestreComponent } from './pages/semestre/semestre.component';
 import { CardSalleComponent } from './components/card-salle/card-salle.component';
 import { CardClasseComponent } from './components/card-classe/card-classe.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FiliereComponent } from './pages/filiere/filiere.component';
+import { CardFiliereComponent } from './components/card-filiere/card-filiere.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -44,12 +48,18 @@ import { InscriptionComponent } from './pages/inscription/inscription.component'
     SemestreComponent,
     CardSalleComponent,
     CardClasseComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    FiliereComponent,
+    CardFiliereComponent
   ],
   imports: [
     SharedModule,
     CommonModule,
-    RpRoutingModule
+    RpRoutingModule,
+    ReactiveFormsModule,
+     FormsModule,
+     NgSelectModule
+
   ],
 })
 export class RpModule { }

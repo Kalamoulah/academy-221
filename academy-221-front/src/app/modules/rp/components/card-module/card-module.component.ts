@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ModuleInterface } from 'src/app/interface/abstract';
 
 @Component({
   selector: 'app-card-module',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./card-module.component.css']
 })
 export class CardModuleComponent {
-
+  @Input() module!: ModuleInterface ;
 }

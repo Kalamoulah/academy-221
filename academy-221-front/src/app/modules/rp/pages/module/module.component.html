@@ -4,20 +4,17 @@
    
       <form class="flex justify-center items-center">
         <div class=" w-[305px]">
-            <input type="text" id="module" class= "w-[300px] mr-5 bg-white border border-Azure text-gray-900 text-sm rounded-lg focus:ring-azure-light focus:border-azure-light block  p-2.5 dark:bg-gray-700 dark:border-azure-light dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ajouter un module" required>
+            <input type="text" id="module" [(ngModel)]="libelle" name="libelle" class= "w-[300px] mr-5 bg-white border border-Azure text-gray-900 text-sm rounded-lg focus:ring-azure-light focus:border-azure-light block  p-2.5 dark:bg-gray-700 dark:border-azure-light dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ajouter un module" required>
           </div>
-          <button type="submit" class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+          <button type="submit" (click)="onSubmitModule()" [disabled]="libelle.length == 0" class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
       </form>
     </div>
     <div  class="w-full h-auto mt-10 flex justify-start items-start  flex-wrap">
-        <app-card-module> </app-card-module>
-        <app-card-module> </app-card-module>
-        <app-card-module> </app-card-module>
-        <app-card-module> </app-card-module>
-        <app-card-module> </app-card-module>
-        <app-card-module> </app-card-module>
-        <app-card-module> </app-card-module>
-        <app-card-module> </app-card-module>
+      <div *ngFor="let module of allModule" class="">
+
+        <app-card-module [module]="module"></app-card-module>
+      </div>
+       
         
     </div>
 </div>

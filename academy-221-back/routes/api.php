@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\AnneeScolaireController;
+use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\FiliereController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\SalleController;
+use App\Http\Controllers\SemestreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('salle', SalleController::class )->only(['index','store','update','destroy']);
+Route::apiResource('semestre', SemestreController::class )->only(['index','store','update','destroy']);
+Route::apiResource('filiere', FiliereController::class )->only(['index','store','update','destroy']);
+Route::apiResource('module', ModuleController::class )->only(['index','store','update','destroy']);
+Route::apiResource('classe', ClasseController::class )->only(['index','store','update','destroy']);
+Route::apiResource('anneeScolaire', AnneeScolaireController::class )->only(['index','store','update','destroy']);

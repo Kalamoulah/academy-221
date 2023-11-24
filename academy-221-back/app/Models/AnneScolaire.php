@@ -10,10 +10,19 @@ class AnneScolaire extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        "id",
+    ];
     public function semestres(): BelongsToMany
     {
         return $this->belongsToMany(Semestre::class);
     }
+
+    public function classe(): BelongsToMany
+    {
+        return $this->belongsToMany(Classe::class);
+    }
+
 
     /**
      * Récupère l'année scolaire en cours.

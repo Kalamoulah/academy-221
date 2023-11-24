@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Semestre extends Model
 {
     use HasFactory;
-
+    protected $guarded = [
+        "id",
+        ];
     public function anne_scolaires(): BelongsToMany
     {
         return $this->belongsToMany(AnneScolaire::class);

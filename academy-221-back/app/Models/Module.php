@@ -11,10 +11,13 @@ class Module extends Model
 {
     use HasFactory;
    
+    protected $guarded = [
+        "id",
+    ];
+
     public function user() :BelongsToMany
     {
         return $this->belongsToMany(User::class, 'module_professeurs');
     }
     
-
 }

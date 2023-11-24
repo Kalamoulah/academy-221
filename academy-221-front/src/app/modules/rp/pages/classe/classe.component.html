@@ -4,10 +4,9 @@
           <button type="button"  (click)="onButtoonDrawerClicked()" class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ajouter une classe</button>
     </div>
     <div  class="w-full h-auto mt-10 flex justify-center items-start  flex-wrap">
-      <app-card-classe></app-card-classe>
-      <app-card-classe></app-card-classe>
-      <app-card-classe></app-card-classe>
-      <app-card-classe></app-card-classe>
+      <div *ngFor="let classe of allClasse">
+      <app-card-classe [classe]="classe" ></app-card-classe>
+    </div>
       
     </div>
 </div>
@@ -32,28 +31,35 @@
    </svg>
   </span> Lorsque vous ajoutez une année, vous aurez la possibilité de sélectionner les semestres de cette année et les classes qui y seront associées. Cette approche flexible vous permet de personnaliser chaque année en fonction des besoins spécifiques de votre établissement. Il vous suffit de cocher les cases correspondantes pour les semestres et les classes que vous souhaitez inclure.
 </p>
- <form action="" class="w-full h-[30%] mt-10">
+ <form class="w-full h-[30%] mt-10">
   <div class="mb-6">
     <label for="libelle" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">libelle</label>
-    <input type="text" id="libelle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="classe A" required>
+    <input type="text" [(ngModel)]="libelle" name="libelle" id="libelle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="classe A" required>
   </div>
 
 
   <div class="mb-7">
     <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">selectionner une filiere</label>
-      <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option selected>Choose a country</option>
-        <option value="US">United States</option>
-        <option value="CA">Canada</option>
-        <option value="FR">France</option>
-        <option value="DE">Germany</option>
+      <select id="countries" 
+      (change)="onfiliereSelect($event)"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <option [value]="0" >choisir une filiere</option>
+      <option *ngFor="let filiere of allFiliere " [value]="filiere.id">{{filiere.libelle}}</option>
       </select>
   </div>
+
+  <!-- <div class="mb-7">
+    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">selectionner une filiere</label>
+    <ng-select  bindLabel="libelle" (change)="selectedModule($event)" [items]="allModule" bindValue="id" [multiple]="true"
+    [closeOnSelect]="false" [hideSelected]="true">
+</ng-select>
+  </div> -->
+
 
 
  </form>
  <div class="grid grid-cols-2 gap-4 absolute bottom-8">
   <button (click)="onButtoonDrawerClicked()" type="button" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-azure-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Annuler</button>
-   <button type="button" class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ajouter</button>
+   <button type="button" (click)="onSubmitClasse()" [disabled]="filiereSelect == 0 || libelle.length == 0" class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ajouter</button>
 </div>
 </div>

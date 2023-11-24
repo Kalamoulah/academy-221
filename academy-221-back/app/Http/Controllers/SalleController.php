@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SalleRequest;
+use App\Http\Resources\ResponseData;
+use App\Models\Salle;
 use Illuminate\Http\Request;
 
 class SalleController extends Controller
@@ -11,15 +14,19 @@ class SalleController extends Controller
      */
     public function index()
     {
-        //
+        // $salle = Salle::latest()->paginate(10);
+        $salle = Salle::all();
+        
+         return ResponseData::responseFormat('all Salles',[$salle], true);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SalleRequest $request)
     {
-        
+        $salle = Salle::create($request->all());
+        return ResponseData::responseFormat('Salle ajouter avec success', [$salle], true);
     }
 
     /**

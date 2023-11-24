@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ClasseInterface } from 'src/app/interface/abstract';
 
 @Component({
   selector: 'app-card-classe',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./card-classe.component.css']
 })
 export class CardClasseComponent {
-
+  @Input() classe!: ClasseInterface ;
 }

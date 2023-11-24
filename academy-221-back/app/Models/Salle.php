@@ -9,6 +9,9 @@ class Salle extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+    "id",
+    ];
     public function sessions()
     {
         return $this->hasMany(Session::class, 'salle_id');

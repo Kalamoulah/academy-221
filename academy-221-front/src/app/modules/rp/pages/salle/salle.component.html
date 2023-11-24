@@ -6,17 +6,13 @@
          (click)="onclicled()"
           class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ajouter une salle</button>
     </div>
-    <div  class="w-full h-auto mt-10 flex justify-center items-start  flex-wrap">
-      <app-card-salle></app-card-salle>
-      <app-card-salle></app-card-salle>
-      <app-card-salle></app-card-salle>
-      <app-card-salle></app-card-salle>
-      <app-card-salle></app-card-salle>
-      <app-card-salle></app-card-salle>
-      <app-card-salle></app-card-salle>
-      <app-card-salle></app-card-salle>
-      <app-card-salle></app-card-salle>
-      <app-card-salle></app-card-salle> 
+    <div class="w-full h-auto mt-10 flex justify-center items-start  flex-wrap">
+      <div *ngFor="let salle of sallesData" class="">
+          <app-card-salle [salle]="salle"></app-card-salle>
+      </div>
+     
+     
+    
     </div>
 </div>
 
@@ -30,20 +26,30 @@
       </span> Lorsque vous ajoutez une  salle ,vous aurez la possibilité d'ajouter le nombre de place de ce dernier;
     </p>
     <hr>
-    <form action="" class="mt-4">
+    <form [formGroup]="salleform" class="mt-4">
       <div class="mb-6">
         <label for="libelle" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">libelle</label>
-        <input type="text" id="libelle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="2010-2011" required>
+        <input 
+         formControlName="libelle"     
+         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="2010-2011" required
+         type="text"
+         id="libelle"
+         >
+      
       </div>
 
       <div class="mb-6">
         <label for="libelle" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">nombre de place</label>
-        <input type="text" id="libelle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="50..." required>
+        <input 
+        formControlName="nombre_place"  
+        type="text" 
+        id="libelle" 
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="50..." required>
       </div>
     </form>
     <div class="grid grid-cols-2 gap-4 mt-10">
       <button (click)="onclicled()" type="button" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-azure-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Annuler</button>
-       <button type="button" class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ajouter</button>
+       <button type="button" (click)="onSubmitForm()" [disabled]="!salleform.valid" class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ajouter</button>
    </div>
   </div>
 </div>

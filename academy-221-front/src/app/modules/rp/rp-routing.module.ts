@@ -12,6 +12,7 @@ import { ClasseComponent } from './pages/classe/classe.component';
 import { SemestreComponent } from './pages/semestre/semestre.component';
 import { EtudiantComponent } from './pages/etudiant/etudiant.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
+import { FiliereComponent } from './pages/filiere/filiere.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'semestre', component: SemestreComponent },
   { path: 'etudiants', component: EtudiantComponent },
   { path: 'inscription', component: InscriptionComponent },
+  { path: 'filiere', component: FiliereComponent },
 
 ];
 
