@@ -19,6 +19,7 @@ export class ModuleComponent {
   constructor( private _moduleService: ModuleService){}
    ngOnInit(){
     this.allModuleData()
+ 
    }
 
   onSubmitModule(){
@@ -76,4 +77,6 @@ export class ModuleComponent {
         })
       ).subscribe()
     }
+
+   
 }

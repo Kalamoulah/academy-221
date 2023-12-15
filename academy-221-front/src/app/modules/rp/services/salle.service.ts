@@ -15,6 +15,6 @@ export class SalleService extends AbstractService<dataResponse>{
   }
 
   all() :Observable<any>{
-    return this.http.get<any>(`${environment.url}uri`)
+    return this.http.get<any>(`${environment.url}salle`)
   }
 }

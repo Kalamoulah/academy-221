@@ -10,9 +10,6 @@
       <div *ngFor="let salle of sallesData" class="">
           <app-card-salle [salle]="salle"></app-card-salle>
       </div>
-     
-     
-    
     </div>
 </div>
 
@@ -33,9 +30,9 @@
          formControlName="libelle"     
          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="2010-2011" required
          type="text"
-         id="libelle"
-         >
-      
+         
+         id="libelle">
+
       </div>
 
       <div class="mb-6">
@@ -44,6 +41,7 @@
         formControlName="nombre_place"  
         type="text" 
         id="libelle" 
+        (input)="validInput('nombre_place', salleform)"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="50..." required>
       </div>
     </form>

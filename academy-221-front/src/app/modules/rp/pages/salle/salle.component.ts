@@ -24,7 +24,8 @@ export class SalleComponent {
    }
 
    ngOnInit(){
-     this.allDataSalle()
+     this.allDataSalle();
+  
    }
    onclicled(){
     this.openModal = !this.openModal
@@ -47,7 +48,6 @@ export class SalleComponent {
               timer: 1500
             });
             this.sallesData.unshift(this.data)
-      
         }
         },
         complete: () => {
@@ -65,6 +65,8 @@ export class SalleComponent {
     this._salleService.all().pipe(
       tap({
         next:(res)=>{
+          console.log(res);
+          
             if (res.success) {
               this.sallesData = res.data[0]
             }
@@ -77,6 +79,10 @@ export class SalleComponent {
         },
       })
     ).subscribe()
+  }
+
+  validInput(name:string, formName:FormGroup){
+    return this._salleService.validInput(name,formName)
   }
 
 }

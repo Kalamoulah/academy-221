@@ -1,19 +1,19 @@
 <div class="w-[350px] h-[300px] mr-5 mb-5 p-6 bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-lg relative">
     <div class="title_module">
         <h2 class="mb-2 text-2xl font-bold font-mono ">Module:
-            <span class=" font-medium text-xl">laravel </span>
+            <span class=" font-medium capitalize text-xl">{{course.module.libelle}} </span>
         </h2>
         <h2 class="mb-2  text-2xl font-bold font-mono">Prof:
-            <span class=" font-medium text-xl">Doucouré</span>
+            <span class=" font-medium capitalize text-xl">{{course.professeur.name}} </span>
         </h2>
         <h2 class="mb-2 text-2xl font-bold font-mono">classe
-            <span class=" font-medium text-xl">devA,devB</span>
+            <span class=" font-medium text-xl">{{course.classe_concerne}}</span>
         </h2>
         <h2 class="mb-2 text-2xl font-bold font-mono">heure global
-            <span class=" font-medium text-xl">30 h</span>
+            <span class=" font-medium text-xl">{{course.heure_global}}h</span>
         </h2>
-        <div class="w-full bg-gris rounded-full h-2.5 dark:bg-gray-700 mt-5" >
-            <div class="bg-azure-light h-2.5 rounded-full" style="width:55%"></div>
+        <div class="w-full bg-gris rounded-full h-2.5 dark:bg-gray-700 mt-5 box-border overflow-visible" >
+            <div class="bg-azure-light h-2.5 rounded-full" [style.width.%]="calculateProgress()" [class.w-full]="isFullWidth()" [style.background]="course.color"></div>
         </div>
         
     </div>

@@ -1,13 +1,13 @@
 <div class="w-[300px] h-[150px] mr-5 mb-5 p-6 bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-lg relative">
     <div class="title_module">
-        <h2 class="uppercase text-3xl mb-2">{{annee?.libelle}}</h2>
+        <h2 class="uppercase text-3xl mb-2">{{annee.libelle!}}</h2>
         <h2 class="mb-2 text-lg font-bold font-mono">etat:
-            <span  [ngClass]="{'text-green-500': annee?.en_cours == 1}"class=" font-medium text-base">{{annee?.en_cours == 1 ? "actif" : "inactif"}}</span>
+            <span  [ngClass]="{'text-green-500': annee.en_cours! == 1}"class=" font-medium text-base">{{annee.en_cours! == 1 ? "actif" : "inactif"}}</span>
         </h2>
     </div>
     <div class="option flex absolute bottom-3 right-5 " >
         <a href="" class="w-[100px] h-[35px] bg-azure-light hover:bg-Azure  rounded-full flex justify-center items-center mr-3">
-            <span class="text-white">{{annee?.en_cours == 1 ? "Desactiver" : "activer"}}</span>
+            <span class="text-white">{{annee.en_cours! == 1 ? "Desactiver" : "activer"}}</span>
          </a>
         <a href="" class="w-[35px] h-[35px] bg-azure-light  rounded-full hover:bg-Azure  flex justify-center items-center mr-3">
             <svg class="w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-Azure dark:group-hover:text-white"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

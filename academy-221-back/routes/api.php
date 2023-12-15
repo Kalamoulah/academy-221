@@ -6,6 +6,7 @@ use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\SalleController;
 use App\Http\Controllers\SemestreController;
+use App\Http\Controllers\CoursController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,6 @@ Route::apiResource('filiere', FiliereController::class )->only(['index','store',
 Route::apiResource('module', ModuleController::class )->only(['index','store','update','destroy']);
 Route::apiResource('classe', ClasseController::class )->only(['index','store','update','destroy']);
 Route::apiResource('anneeScolaire', AnneeScolaireController::class )->only(['index','store','update','destroy']);
+Route::apiResource('cours', CoursController::class )->only(['index','store','update','destroy']);
+Route::get('all', [CoursController::class, 'all']);
+Route::get('module/{idmodule}/semetre/{idSemeste}', [CoursController::class, 'getProfesseurAndClasse']);

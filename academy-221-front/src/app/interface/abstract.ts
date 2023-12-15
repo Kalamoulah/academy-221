@@ -33,4 +33,21 @@ export interface AnneeScolaireInterface extends Abstract {
     en_cours: number
 }
 
+export interface Cours {
+    cours_id: number
+    heure_global: string
+    color: string
+    classe_concerne: string[]
+    heure_ecoule: string
+    id: number
+    libelle: string
+    professeur: Professeur
+    module: SharedInterface
+  }
+  
+  export interface Professeur {
+    id: number
+    name: string
+  }
+
 

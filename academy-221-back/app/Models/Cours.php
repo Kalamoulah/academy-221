@@ -35,7 +35,7 @@ class Cours extends Model
     public function classes()
     {
         return $this->belongsToMany(Classe::class, 'classe_cours', 'cours_id', 'classe_annee_scolaire_id')
-            ->withPivot(['heure_global', 'heure_restant']);
+            ->withPivot(['heure_ecoule']);
     }
 
     public function sessionsEleve($inscription_id){

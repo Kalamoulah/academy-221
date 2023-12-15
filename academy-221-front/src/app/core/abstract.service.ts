@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
@@ -21,6 +22,16 @@ export abstract class AbstractService<T>  {
     return this.http.delete<T>(`${environment.url}${this.uri()}/${id}`);
   }
 
+  validInput(name: string, formName: FormGroup) {
+    const regex = /^[0-9]*$/;
+    let inputValue = formName.get(name)?.value;
+  
+    if (inputValue && !regex.test(inputValue)) {
+      formName.get(name)?.patchValue(inputValue.replace(/[^0-9]/g, ''));
+    }
+  }
+
+  
   
 
   // update(data: articleVente ,id: number): Observable<T> {
