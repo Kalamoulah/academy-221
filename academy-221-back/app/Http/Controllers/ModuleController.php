@@ -39,12 +39,12 @@ class ModuleController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(SharedRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-        //
+        $module = Module::findOrFail($id);
+        $module->update($request->all());
+
+        return ResponseData::responseFormat('Module mise à jour avec succès', $module, true);
     }
 
     /**
@@ -52,6 +52,9 @@ class ModuleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $module = Module::findOrFail($id);
+        $module->delete();
+
+        return ResponseData::responseFormat('Module supprimée avec succès', [], true);
     }
 }

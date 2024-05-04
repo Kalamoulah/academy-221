@@ -16,9 +16,9 @@ class ClasseController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    { 
+    {
         $classe = ClasseResource::collection(Classe::all());
-        return ResponseData::responseFormat('all data',$classe, true);
+        return ResponseData::responseFormat('all data', $classe, true);
     }
 
     /**
@@ -43,14 +43,19 @@ class ClasseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $classe = Classe::findOrFail($id);
+        $classe->update($request->all());
 
+        return ResponseData::responseFormat('Classe mise à jour avec succès', $classe, true);
+    }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $classe = Classe::findOrFail($id);
+        $classe->delete();
+
+        return ResponseData::responseFormat('Classe supprimée avec succès', [], true);
     }
 }

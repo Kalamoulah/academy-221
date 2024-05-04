@@ -42,9 +42,12 @@ class FiliereController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SharedRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-        //
+        $filiere = Filiere::findOrFail($id);
+        $filiere->update($request->all());
+
+        return ResponseData::responseFormat('Filiere mise à jour avec succès', $filiere, true);
     }
 
     /**
@@ -52,6 +55,9 @@ class FiliereController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $filiere = Filiere::findOrFail($id);
+        $filiere->delete();
+
+        return ResponseData::responseFormat('Filiere supprimée avec succès', [], true);
     }
 }
