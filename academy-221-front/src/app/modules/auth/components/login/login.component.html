@@ -1,0 +1,40 @@
+
+<div class=" h-screen flex justify-center items-center bg-[#A1B3B0]   ">
+  <div class="w-full h-full bg-white flex">
+    <div class="w-[50%] h-[100%] bg-red-200 flex justify-center items-center">
+      <img src="assets/svg/Computer-login.svg" class="w-[70%] h-[70%]" draggable="false" alt="">
+    </div>
+    <div class="w-[50%] h-[100%] bg-white flex flex-col justify-center items-center">
+      <h2 class="text-2xl font-mono font-bold  uppercase text-gray-900 dark:text-black">
+        Connectez vous 🚀
+      </h2>
+      <form action="" class="w-[50%] flex justify-center flex-col  mt-10 h-auto pt-5 bg-white space-y-6 px-9 " [formGroup]="loginForm">
+        <div class="relative">
+          <input type="text" id="floating_outlined"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-black bg-[#fff] rounded-lg border-[1px] border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-red-600 peer"
+            placeholder=" " formControlName="username" />
+          <label for="floating_outlined"
+            class="absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-red-600 peer-focus:dark:red-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 font-mono font-extralight">Telephone</label>
+        </div>
+        <div class="relative">
+          <input type="password" id="floating_outlined"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-black bg-[#fff] rounded-lg border-[1px] border-gray-300 appearance-none   dark:focus:border-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
+            placeholder=" " formControlName="password" />
+          <label for="floating_outlined"
+            class="absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-red-600 peer-focus:dark:red-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 font-mono font-extralight">Password  </label>
+        </div>
+        <div class="flex items-start">
+          <a href="#"
+            class="ml-auto text-sm  text-red-600 hover:underline dark:text-red-500 font-mono font-extralight">Lost
+            Password?</a>
+        </div>
+        <button type="submit" (click)="connexion()"
+          class="w-full px-5 py-3 text-base font-mono  text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-red-500 dark:hover:bg-red-700 dark:focus:ring-red-800">Login
+          to your account</button>
+        <div class="text-sm font-medium text-gray-900 dark:text-black">
+          Not registered yet? <a [routerLink]="['/register']" class="text-blue-600 hover:underline dark:text-red-500">Create account</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

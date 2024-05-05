@@ -21,9 +21,9 @@ export class ClasseComponent {
   moduleSelected: any[] = []
   dataUnshift!:ClasseInterface
   constructor( private _filiereService: FiliereService, private _classeService:ClasseService ){
-  
+
   }
-  
+
    onButtoonDrawerClicked(){
       this.openDrawer = !this.openDrawer
    }
@@ -40,9 +40,9 @@ export class ClasseComponent {
 
    onfiliereSelect(event: Event){
     const element = event.target as HTMLSelectElement
-    this.filiereSelect = +element.value 
+    this.filiereSelect = +element.value
     console.log(this.filiereSelect);
-    
+
    }
 
    allFiliereData(){
@@ -51,7 +51,7 @@ export class ClasseComponent {
         next:(res)=>{
           console.log(res.data[0]);
           if (res.data[0].length == 0) {
-            console.log('breukh');  
+            console.log('breukh');
           }else{
             this.allFiliere = res.data
           }
@@ -74,7 +74,7 @@ export class ClasseComponent {
           console.log(res);
 
           if (res.data[0].length == 0) {
-            console.log('breukh');  
+            console.log('breukh');
           }
           if (res.success) {
             this.allClasse = res.data
@@ -91,7 +91,7 @@ export class ClasseComponent {
 
   }
 
-  
+
 
 
   onSubmitClasse(){
@@ -102,17 +102,17 @@ export class ClasseComponent {
    this.dataUnshift = {
     libelle: this.libelle,
     filiere: this.allFiliere.filter((filiere) => filiere.id == this.filiereSelect)[0]
-   } 
+   }
    console.log(data);
-   
+
      console.log(this.dataUnshift);
-     
+
       this._classeService.add(data).pipe(
         tap({
           next:(res)=>{
             console.log(res);
            console.log(res);
-           
+
             if (res.success) {
               Swal.fire({
                 icon: "success",

@@ -5,7 +5,7 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
   ],
   theme: {
-  
+
     colors:{
       "white": "#ffffff",
       "black": "#000000",
@@ -16,7 +16,7 @@ module.exports = {
     },
     extend: {
       backgroundColor: {
-        'modal-dark': 'rgba(0, 0, 0, 0.5)', 
+        'modal-dark': 'rgba(0, 0, 0, 0.5)',
       },
     },
   },

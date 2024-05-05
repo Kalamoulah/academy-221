@@ -2,17 +2,18 @@
 <div class="w-full h-full p-4 ">
     <div class="w-full h-[10%] flex justify-between items-center ">
       <h1 class="uppercase text-4xl font-semibold">Professeur</h1>
-          <button type="button" 
+          <button type="button"
           (click)="onButtoonDrawerClicked()"
           class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ajouter un(e) professeur(e)</button>
     </div>
     <div  class="w-full h-auto mt-10 flex justify-center items-start  flex-wrap">
-        <app-card-prof></app-card-prof>
-        <app-card-prof></app-card-prof>
-        <app-card-prof></app-card-prof>
-        <app-card-prof></app-card-prof>
-        <app-card-prof></app-card-prof>
-        <app-card-prof></app-card-prof>
+        <!-- <app-card-prof></app-card-prof> -->
+
+        <div *ngFor="let professeur of allProfesseur">
+          <app-card-prof [professeur]="professeur"></app-card-prof>
+          <!-- <app-card-classe [professeur]="professeur" ></app-card-classe> -->
+        </div>
+
     </div>
 </div>
 
@@ -36,36 +37,39 @@
      </svg>
     </span> Lorsque vous ajoutez un(e) professeur(e) vous devriez ajouter les infomations personnelle de dernier tels que son mon, adresse, telephone et mail.
             vous avez aussi la possibilité de selectionner les modules qu'il enseignent
-   <form action="" class="w-full h-[30%] mt-10">
+   <form [formGroup]="professeurForm" class="w-full h-[30%] mt-10">
     <div class="mb-6">
-      <label for="libelle" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">nom complet</label>
-      <input type="text" id="libelle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Mouhamed Doucoure" required>
+      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">nom complet</label>
+      <input type="text" id="name" name="name" formControlName="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Mouhamed Doucoure" required>
     </div>
     <div class="mb-6">
         <label for="adresse" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">addresse</label>
-        <input type="text" id="libelle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="keur Massar" required>
+        <input type="text" id="adresse" name="adresse" formControlName="addresse" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="keur Massar" required>
     </div>
     <div class="mb-6">
         <label for="telephone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">telephone</label>
-        <input type="text" id="telephone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="770000000" required>
+        <input type="text" id="telephone" name="telephone" formControlName="telephone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="770000000" required>
     </div>
     <div class="mb-6">
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">mail</label>
-        <input type="mail" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="doucoure@gmail.com" required>
+        <input type="mail" id="email" name="email" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="doucoure@gmail.com" required>
     </div>
     <div class="mb-7">
-      <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">selectionner les modules</label>
+      <ng-select  bindLabel="libelle" (change)="selectedModules($event)" [items]="allModules" bindValue="id" [multiple]="true"
+      [closeOnSelect]="false" [hideSelected]="true">
+      </ng-select>
+      <!-- <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">selectionner les modules</label>
         <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option selected>Choose a country</option>
           <option value="US">United States</option>
           <option value="CA">Canada</option>
           <option value="FR">France</option>
           <option value="DE">Germany</option>
-        </select>
+        </select> -->
     </div>
    </form>
    <div class="grid grid-cols-2 gap-4 absolute bottom-8">
     <button (click)="onButtoonDrawerClicked()" type="button" class="px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-azure-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Annuler</button>
-     <button type="button" class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ajouter</button>
+     <button (click)="addProfesseur()" type="button" class="text-white bg-Azure hover:bg-azure-light focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ajouter</button>
  </div>
 </div>

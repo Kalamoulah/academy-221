@@ -25,8 +25,7 @@ export abstract class AbstractService<T>  {
   validInput(name: string, formName: FormGroup) {
     const regex = /^[0-9]*$/;
     let inputValue = formName.get(name)?.value;
-  
-    if (inputValue && !regex.test(inputValue)) {
+      if (inputValue && !regex.test(inputValue)) {
       formName.get(name)?.patchValue(inputValue.replace(/[^0-9]/g, ''));
     }
   }
