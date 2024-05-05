@@ -16,8 +16,8 @@ class SemestreController extends Controller
     public function index()
     {
         $semestre = SharedResource::collection(Semestre::all());
-        
-        return ResponseData::responseFormat('All semestre ',$semestre, true);
+
+        return ResponseData::responseFormat('All semestre ', $semestre, true);
     }
 
     /**
@@ -40,17 +40,22 @@ class SemestreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SharedRequest $request, string $id)
+    public function update(SharedRequest $request, $id)
     {
-        //
-    }
+        $semestre = Semestre::findOrFail($id);
+        $semestre->update($request->all());
 
+        return ResponseData::responseFormat('Semestre mis à jour avec succès', $semestre, true);
+    }
     /**
      * Remove the specified resource from storage.
      */
 
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $semestre = Semestre::findOrFail($id);
+        $semestre->delete();
+
+        return ResponseData::responseFormat('Semestre supprimé avec succès', [], true);
     }
 }
