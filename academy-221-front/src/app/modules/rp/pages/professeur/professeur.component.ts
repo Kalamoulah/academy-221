@@ -42,14 +42,13 @@ export class ProfesseurComponent {
   }
 
   selectedModules($event: any) {
-    this.moduleSelected = $event
-    console.log(this.moduleSelected = $event
-    );
+  //  this.moduleSelected = $event
+  this.moduleSelected = $event.map((module: any) => module.id);
+  console.log(this.moduleSelected);
+
   }
 
   allProfesseurData() {
-
-
     this._professeurService.all().pipe(
       tap({
         next: (res) => {
