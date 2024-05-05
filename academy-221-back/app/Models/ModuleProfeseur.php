@@ -12,11 +12,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ModuleProfeseur extends Model
 {
+
+
     use HasFactory;
     protected $table = 'module_professeurs';
     // public function anne_scolaire_semestres() :BelongsToMany{
     //     return $this->belongsToMany(AnneScolaireSemestre::class,);
     // }
+
+    protected $guarded = [
+        "id",
+    ];
+
 
     public function professeur(): BelongsTo
     {
@@ -33,7 +40,7 @@ class ModuleProfeseur extends Model
     {
         $anneeEnCours = AnneScolaire::getAnneeEnCours();
         if (!$anneeEnCours) {
-            return DataCollection::toApiResponse("cette n'est pas l'année en cours", [], false);
+            // return DataCollection::toApiResponse("cette n'est pas l'année en cours", [], false);
         }
 
         return self::where('module_id', $idModule)

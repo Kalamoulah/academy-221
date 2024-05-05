@@ -19,12 +19,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+
+    // ];
+
+    protected $guarded= [
+       'id'
     ];
-    
+
 
 
     /**
@@ -46,14 +51,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    
 
-    public function module() :BelongsToMany
+
+    // public function module() :BelongsToMany
+    // {
+    //     return $this->belongsToMany(Module::class, 'module_professeurs');
+    // }
+
+    public function module(): BelongsToMany
     {
-        return $this->belongsToMany(Module::class, 'module_professeurs');
+        return $this->belongsToMany(Module::class, 'module_professeurs', 'professeur_id');
     }
 
-    public function inscriptions() {
+    public function inscriptions()
+    {
         return $this->belongsToMany(Inscription::class);
+    }
+
+    public static function getByRole($role)
+    {
+        return self::where('role', $role)->get();
     }
 }

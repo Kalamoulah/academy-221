@@ -14,12 +14,17 @@ class ProfesseurResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $modules = ProfWithModule::collection($this->module)->pluck('libelle');
         return [
           "id"=>$this->id,
           "name"=>$this->name,
-        //   'email'=>$this->email,
-        //   'telephone'=>$this->telephone,
-        //   'role'=>$this->role
+          'email'=>$this->email,
+          'telephone'=>$this->telephone,
+          'role'=>$this->role,
+          'date_naissance'=>$this->date_naissance,
+          'lieu_naissance'=>$this->lieu_naissance,
+          'address'=>$this->address,
+          'modules' => implode(",", $modules->toArray())
         ];
     }
 }
