@@ -36,4 +36,5 @@ Route::apiResource('cours', CoursController::class )->only(['index','store','upd
 Route::get('professeur', [userController::class, 'getProfesseur'] );
 Route::post('professeur', [userController::class, 'addProff'] );
 Route::get('all', [CoursController::class, 'all']);
+Route::post('inscription', [ClasseController::class, 'ajoutAprennant']);
 Route::get('module/{idmodule}/semetre/{idSemeste}', [CoursController::class, 'getProfesseurAndClasse']);

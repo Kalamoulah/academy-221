@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-root',
@@ -8,7 +9,18 @@ import { initFlowbite } from 'flowbite';
 export class AppComponent {
   title = 'academy-221-front';
 
-  ngOnInit(){
+  showNavbar: boolean = true;
+  ngOnInit() {
     initFlowbite
+  }
+
+
+
+  constructor(private router: Router) {
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showNavbar = !event.url.includes('/auth/login');
+      }
+    });
   }
 }

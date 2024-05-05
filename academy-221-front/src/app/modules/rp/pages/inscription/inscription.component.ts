@@ -1,8 +1,10 @@
-import { Component ,EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import * as XLSX from 'xlsx';
 
 import { tap } from 'rxjs';
+import { ClasseService } from '../../services/classe.service';
+import { RpService } from '../../services/rp.service';
 
 @Component({
   selector: 'app-inscription',
@@ -14,34 +16,31 @@ export class InscriptionComponent {
   @Output() dataInscription: EventEmitter<any> = new EventEmitter<any>();
   selectedFile!: File | null;
   excelData!: any[] | null
-  classes!: any[] 
+  classes!: any[]
   classeSelect: number = 0;
 
-  // constructor(private _rpService: RpService){}
-  // ngOnInit(): void {
-  //   this. allClass();
-
-
-  // }
+  constructor(private _classeService: ClasseService, private _rpService: RpService) { }
+  ngOnInit(): void {
+    this.allClass();
+  }
 
   classeSelected(event: Event) {
     const element = event.target as HTMLSelectElement
-     this.classeSelect = +element.value 
+    this.classeSelect = +element.value
   }
 
 
   convertExcelDateToDate(excelDateValue: number) {
     const epoch = new Date(1899, 11, 30).getTime();
-    const jsDate = new Date(epoch + (excelDateValue - 1) * 24 * 60 * 60 * 1000); 
+    const jsDate = new Date(epoch + (excelDateValue - 1) * 24 * 60 * 60 * 1000);
     return jsDate;
   }
 
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-    
-   this.readExcelFile()
-    
+    this.readExcelFile()
+
   }
 
   readExcelFile() {
@@ -62,44 +61,43 @@ export class InscriptionComponent {
     reader.readAsArrayBuffer(this.selectedFile!);
   }
 
-  allClass(){
-      // this._rpService.getAllClasse().pipe(
-      //   tap({
-      //     next: (res) => {
-      //       console.log(res);
-      //       this.classes = res.data
-      //       console.log(res.data);
-            
-      //     },
-      //     complete: () => {
-      //       console.log("obervable terminé");
-      //     },
-      //     error: (err) => {
-      //       console.log(err);
-      //     }
-      //   }),
-      // ).subscribe()
+  allClass() {
+    this._classeService.all().pipe(
+      tap({
+        next: (res) => {
+          console.log(res);
+          this.classes = res.data
+          console.log(this.classes);
+        },
+        complete: () => {
+          console.log("obervable terminé");
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      }),
+    ).subscribe()
   }
 
   insciption() {
-     const data = {
-       classe_id: this.classeSelect,
-       eleves :this.excelData 
-     }
-    //  this._rpService.inscription(data).pipe(
-    //   tap({
-    //     next: (res) => {
-    //       console.log(res);          
-    //     },
-    //     complete: () => {
-    //       console.log("obervable terminé");
-    //     },
-    //     error: (err) => {
-    //       console.log(err);
-    //     }
-    //   }),
-    // ).subscribe()
-           
-  
+    const data = {
+      classe_id: this.classeSelect,
+      eleves: this.excelData
     }
+     this._rpService.inscription(data).pipe(
+      tap({
+        next: (res) => {
+          console.log(res);
+        },
+        complete: () => {
+          console.log("obervable terminé");
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      }),
+    ).subscribe()
+
+
+  }
 }

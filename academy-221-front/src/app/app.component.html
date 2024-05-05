@@ -1,14 +1,15 @@
 <div class="w-full h-screen flex">
-  <div class="w-[15%] h-full bg-Azure ">
+  <div class="w-[15%] h-full bg-Azure" *ngIf="showNavbar">
     <app-navbar class="w-full h-full"></app-navbar>
   </div>
 
-  <div class="w-[85%] h-full">
-    <div class="w-full h-[10%] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]"></div>
+  <div  class="w-[100%] h-full">
+    <div class="w-full h-[10%] shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]" *ngIf="showNavbar"></div>
 
-    <div class="w-full h-[90%] overflow-auto ">
+    <div class="w-full h-[100%] overflow-auto ">
       <router-outlet class="flex-grow"></router-outlet>
     </div>
 
   </div>
 </div>
+<!-- <router-outlet class="flex-grow"></router-outlet> -->

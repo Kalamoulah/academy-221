@@ -23,7 +23,11 @@ export class RpService {
   addModule(data:ModuleInterface) :Observable<dataResponse>{
       return this._http.post<dataResponse>(`${environment.url}module`,data)
   }
-  
+
+  inscription(data: any): Observable<any> {
+    return this._http.post<any>(`${environment.url}inscription`, data);
+  }
+     
 
 
 }

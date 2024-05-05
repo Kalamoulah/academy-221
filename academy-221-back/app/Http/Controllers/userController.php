@@ -9,6 +9,7 @@ use App\Models\ModuleProfeseur;
 use App\Models\ModuleProfesseur;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class userController extends Controller
 {
@@ -25,33 +26,40 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-  
     }
+
 
     public function addProff(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'telephone' => 'required|string|unique:users,telephone',
-            "password" => 'required|string',
-            'modules' => 'required|array',
-        ]);
+        DB::beginTransaction();
 
-        $user = User::create($validatedData);
-
-        $anne_encours = AnneScolaire::where('en_cours',1)->first();
-
-
-        foreach ($validatedData['modules'] as $moduleId) {
-            ModuleProfeseur::create([
-                'module_id' => $moduleId,
-                'professeur_id' => $user->id,
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email|unique:users,email',
+                'telephone' => 'required|string|unique:users,telephone',
+                "password" => 'required|string',
+                'modules' => 'required|array',
             ]);
-        }
 
-        return ResponseData::responseFormat('professeur ajouter avec success', [$user], true);
+            $user = User::create($validatedData);
+
+            $anne_encours = AnneScolaire::where('en_cours', 1)->first();
+            foreach ($validatedData['modules'] as $moduleId) {
+                ModuleProfeseur::create([
+                    'module_id' => $moduleId,
+                    'professeur_id' => $user->id,
+                    'anne_scolaire_id'=> $anne_encours->en_cours
+                ]);
+            }
+            DB::commit();
+            return ResponseData::responseFormat('professeur ajouté avec succès', [$user], true);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Erreur lors de l\'ajout du professeur : ' . $e->getMessage()], 500);
+        }
     }
+
 
     public function getProfesseur()
     {
