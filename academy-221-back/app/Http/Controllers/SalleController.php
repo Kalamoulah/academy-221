@@ -42,7 +42,10 @@ class SalleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $salle = Salle::findOrFail($id);
+        $salle->update($request->all());
+
+        return ResponseData::responseFormat('Salle mise à jour avec succès', $salle, true);
     }
 
     /**
@@ -50,6 +53,9 @@ class SalleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $salle = Salle::findOrFail($id);
+        $salle->delete();
+
+        return ResponseData::responseFormat('Salle supprimée avec succès', [], true);
     }
 }
